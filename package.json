@@ -1,5 +1,5 @@
 {
-  "name": "webpack_pixi_typescript_boilerplate",
+  "name": "KillAllSquares",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -29,7 +29,6 @@
     "@pixi/particle-emitter": "^5.0.8",
     "gsap": "^3.11.4",
     "howler": "^2.2.3",
-    "pixi-spine": "^3.1.2",
     "pixi.js": "6.2.0"
   }
 }
