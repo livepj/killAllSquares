@@ -1,12 +1,12 @@
-import { logic } from "..";
-import { keyboardHandler } from "../KeyboardHandler";
+import { baseGame } from "..";
+import { keyboardHandler } from "..";
 
 export class Input {
     constructor() {
-        keyboardHandler.onKeyDown('ArrowLeft', () => logic.moveHorisontal(false))
-        keyboardHandler.onKeyDown('ArrowRight', () => logic.moveHorisontal(true))
-        keyboardHandler.onKeyDown('ArrowUp', () => logic.moveVertical(false))
-        keyboardHandler.onKeyDown('ArrowDown', () => logic.moveVertical(true))
-        keyboardHandler.onKeyDown('Enter', () => logic.destroy())
+        keyboardHandler.onKeyDown('ArrowLeft', () => baseGame.moveHorisontal(false))
+        keyboardHandler.onKeyDown('ArrowRight', () => baseGame.moveHorisontal(true))
+        keyboardHandler.onKeyDown('ArrowUp', () => baseGame.moveVertical(false))
+        keyboardHandler.onKeyDown('ArrowDown', () => baseGame.moveVertical(true))
+        keyboardHandler.onKeyDown('Enter', () => baseGame.destroy())
     }
 }

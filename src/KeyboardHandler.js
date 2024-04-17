@@ -1,4 +1,4 @@
-class KeyboardHandler {
+export class KeyboardHandler {
     constructor() {
         this.keyDict = {}
         this._callBacksDict = {}
@@ -18,4 +18,3 @@ class KeyboardHandler {
         }
     }
 }
-export const keyboardHandler = new KeyboardHandler()
