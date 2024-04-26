@@ -7,6 +7,7 @@ import { BaseGame } from './BaseGame';
 import { Panel } from './Panel';
 import { Scores } from './Scores';
 import { Sound } from './Sound';
+import { Menu } from './Menu';
 
 export const screenWidth = 1920, screenHeihgt = 1080
 const app = new PIXI.Application({ width: screenWidth, height: screenHeihgt, backgroundColor: 0x27c2a7 });
@@ -22,6 +23,8 @@ app.loader
         const board = app.stage.addChild(new Board());
         board.position.set(screenWidth / 2, screenHeihgt / 2)
         app.stage.addChild(new Panel())
+        app.stage.addChild(new Menu())
         new Input()
+        baseGame.start()
     });
 window.baseGame = baseGame

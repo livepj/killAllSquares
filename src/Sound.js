@@ -6,21 +6,24 @@ export class Sound {
     #start = new Howl({ src: "assets/start.mp3", volume: 1 })
     #finish = new Howl({ src: "assets/finish.mp3", volume: 1 })
     #miss = new Howl({ src: "assets/miss.mp3", volume: 1 })
-    #destroyed = new Howl({ src: "assets/destroyed.mp3", volume: 1 })
+    #destroyed = new Howl({ src: "assets/destroyed.wav", volume: 1 })
     constructor() {
-        this.#start.once("end", () => {
+        this.#start.on("end", () => {
             this.#background.play()
         })
         baseGame.onDestroy((_, isGameOver) => {
             this.#destroyed.play()
             if (isGameOver) {
-                this.#background.fade(0.3, 0, 1).once('fade', ()=>this.#background.stop())
+                this.#background.stop()
                 this.#finish.play()
             }
         })
-        baseGame.onMiss(()=>{
+        baseGame.onMiss(() => {
             this.#miss.play()
         })
-        this.#start.play()
+        baseGame.onStart(() => {
+            this.#finish.stop()
+            this.#start.play()
+        })
     }
 }

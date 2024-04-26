@@ -5,7 +5,8 @@ export class BaseGame {
     #onMoveCallbacks = []
     #onDestroyCallbacks = []
     #onMissCallbacks = []
-    #board = (1n << BigInt(this.#width * this.#height)) - 1n
+    #onStartCallbacks = []
+    #board = 0
 
     get height() {
         return this.#height
@@ -79,7 +80,16 @@ export class BaseGame {
         this.#onMissCallbacks.push(callback)
     }
 
-    showBoard() {
-        console.log(this.#board.toString(2))
+    /**
+     * @param {() => void} callback
+     */
+    onStart(callback) {
+        this.#onStartCallbacks.push(callback)
+    }
+
+    start() {
+        this.#position = [0, 0]
+        this.#board = (1n << BigInt(this.#width * this.#height)) - 1n
+        this.#onStartCallbacks.forEach(callback => callback())
     }
 }

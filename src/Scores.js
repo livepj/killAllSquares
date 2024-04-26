@@ -18,11 +18,18 @@ export class Scores {
                 this.totalTime -= deltaMS
             }
         })
-        baseGame.onDestroy(() => {
+        baseGame.onDestroy((_, isGameOver) => {
             this.#score += this.#baseScoreValue * (this.#level + 1)
             this.#totalTime += this.#dificultyFactor ** this.#level * this.#baseResivedDuration
+            if (isGameOver) {
+                this.#score > this.hightScore && this.#setHightScore(this.#score)
+            }
         })
         baseGame.onMiss(() => {
+            this.totalTime = 0
+        })
+        baseGame.onStart(() => {
+            this.#score = 0
             this.totalTime = 0
         })
     }
@@ -53,5 +60,13 @@ export class Scores {
 
     get level() {
         return this.#level
+    }
+
+    get hightScore() {
+        return +localStorage.getItem('hightScore') || 0
+    }
+
+    #setHightScore(value) {
+        localStorage.setItem('hightScore', value.toString())
     }
 }
